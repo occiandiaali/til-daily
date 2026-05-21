@@ -1,0 +1,1413 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TIL Daily — Today I Learned</title>
+    <meta
+      name="description"
+      content="Discover mind-blowing facts every day. Science, history, psychology, space, and more — one surprising fact at a time."
+    />
+    <meta property="og:title" content="TIL Daily — Today I Learned" />
+    <meta
+      property="og:description"
+      content="Mind-blowing facts that will make you the most interesting person in any room."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #0f0f0f;
+        --paper: #faf7f2;
+        --cream: #f0ebe0;
+        --accent: #c8401e;
+        --accent-light: #fdeee9;
+        --muted: #6b6560;
+        --border: #ddd8ce;
+        --card-bg: #ffffff;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--paper);
+        color: var(--ink);
+        font-size: 16px;
+        line-height: 1.65;
+      }
+
+      /* ── HEADER ── */
+      header {
+        border-bottom: 2px solid var(--ink);
+        padding: 0 24px;
+        background: var(--paper);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .header-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 64px;
+      }
+      .logo {
+        font-family: "Playfair Display", serif;
+        font-size: 26px;
+        font-weight: 900;
+        letter-spacing: -0.5px;
+        color: var(--ink);
+        text-decoration: none;
+      }
+      .logo span {
+        color: var(--accent);
+      }
+      nav {
+        display: flex;
+        gap: 8px;
+      }
+      nav a {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--muted);
+        text-decoration: none;
+        padding: 6px 12px;
+        border-radius: 4px;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        transition:
+          color 0.15s,
+          background 0.15s;
+      }
+      nav a:hover {
+        color: var(--ink);
+        background: var(--cream);
+      }
+
+      /* ── AD BANNER (header leaderboard) ── */
+      .ad-leaderboard {
+        background: var(--cream);
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 90px;
+        gap: 12px;
+        font-size: 11px;
+        color: var(--muted);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .ad-leaderboard .ad-slot {
+        width: 728px;
+        max-width: 100%;
+        height: 90px;
+        border: 1px dashed var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        color: var(--muted);
+        letter-spacing: 0.05em;
+        border-radius: 4px;
+        background: white;
+      }
+
+      /* ── HERO ── */
+      .hero {
+        background: var(--ink);
+        color: white;
+        padding: 60px 24px 56px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: "TIL";
+        font-family: "Playfair Display", serif;
+        font-size: 260px;
+        font-weight: 900;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0.05;
+        pointer-events: none;
+        white-space: nowrap;
+      }
+      .hero-eyebrow {
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #aaa;
+        margin-bottom: 16px;
+      }
+      .hero h1 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(32px, 5vw, 58px);
+        font-weight: 900;
+        line-height: 1.1;
+        max-width: 700px;
+        margin: 0 auto 20px;
+      }
+      .hero h1 em {
+        color: #f4a58a;
+        font-style: normal;
+      }
+      .hero p {
+        font-size: 17px;
+        color: #ccc;
+        max-width: 480px;
+        margin: 0 auto 28px;
+        font-weight: 300;
+      }
+      .hero-stats {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        font-size: 13px;
+        color: #aaa;
+      }
+      .hero-stats strong {
+        display: block;
+        font-size: 28px;
+        font-weight: 700;
+        color: white;
+        font-family: "Playfair Display", serif;
+      }
+
+      /* ── LAYOUT ── */
+      .layout {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 48px 24px;
+        display: grid;
+        grid-template-columns: 1fr 300px;
+        gap: 48px;
+        align-items: start;
+      }
+
+      /* ── SECTION LABEL ── */
+      .section-label {
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+        font-weight: 500;
+        margin-bottom: 24px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      /* ── FACT CARDS ── */
+      .featured-card {
+        background: var(--card-bg);
+        border: 1.5px solid var(--ink);
+        border-radius: 8px;
+        padding: 32px;
+        margin-bottom: 24px;
+        position: relative;
+        cursor: pointer;
+        transition: transform 0.15s;
+      }
+      .featured-card:hover {
+        transform: translateY(-2px);
+      }
+      .featured-card .badge {
+        display: inline-block;
+        background: var(--accent);
+        color: white;
+        font-size: 10px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-weight: 500;
+        padding: 4px 10px;
+        border-radius: 3px;
+        margin-bottom: 16px;
+      }
+      .featured-card h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 26px;
+        font-weight: 700;
+        line-height: 1.25;
+        margin-bottom: 14px;
+      }
+      .featured-card .fact-body {
+        font-size: 15px;
+        color: #444;
+        line-height: 1.7;
+        margin-bottom: 20px;
+      }
+      .card-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 12px;
+        color: var(--muted);
+        padding-top: 16px;
+        border-top: 1px solid var(--border);
+      }
+      .card-footer .category {
+        background: var(--cream);
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-weight: 500;
+        color: var(--ink);
+      }
+      .share-btns {
+        display: flex;
+        gap: 8px;
+      }
+      .share-btn {
+        font-size: 11px;
+        font-weight: 500;
+        padding: 5px 12px;
+        border-radius: 4px;
+        border: 1px solid var(--border);
+        background: white;
+        cursor: pointer;
+        letter-spacing: 0.03em;
+        color: var(--ink);
+        transition: background 0.1s;
+      }
+      .share-btn:hover {
+        background: var(--cream);
+      }
+
+      .fact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+
+      .fact-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 22px;
+        cursor: pointer;
+        transition:
+          border-color 0.15s,
+          transform 0.15s;
+      }
+      .fact-card:hover {
+        border-color: var(--ink);
+        transform: translateY(-2px);
+      }
+      .fact-card .cat-tag {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+      .fact-card h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.3;
+        margin-bottom: 8px;
+      }
+      .fact-card p {
+        font-size: 13px;
+        color: #555;
+        line-height: 1.6;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      /* -- Load more button for facts-grid -- */
+      /* #load-more {
+        display: block;
+        margin: 24px auto;
+        padding: 12px 24px;
+        background: linear-gradient(135deg, #4cafef, #0077cc);
+        color: #fff;
+        font-size: 16px;
+        font-weight: 600;
+        border: none;
+        border-radius: 24px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      #load-more:hover {
+        background: linear-gradient(135deg, #0077cc, #005fa3);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+      }
+
+      #load-more:active {
+        transform: translateY(0);
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+      } */
+      #load-more {
+        display: block;
+        margin: 24px auto;
+        padding: 10px 20px;
+        background: transparent;
+        color: #0077cc;
+        font-size: 15px;
+        font-weight: 500;
+        border: 2px solid #0077cc;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      #load-more:hover {
+        background: #0077cc;
+        color: #fff;
+      }
+
+      /* Category colors */
+      .cat-science {
+        color: #1a6e8e;
+      }
+      .cat-history {
+        color: #7a4f00;
+      }
+      .cat-psychology {
+        color: #5c3d9e;
+      }
+      .cat-space {
+        color: #1c3d6e;
+      }
+      .cat-nature {
+        color: #2e6b30;
+      }
+      .cat-tech {
+        color: var(--accent);
+      }
+
+      /* ── MID-PAGE AD ── */
+      .ad-rectangle {
+        background: var(--cream);
+        border: 1px dashed var(--border);
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 280px;
+        font-size: 11px;
+        color: var(--muted);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin: 8px 0 24px;
+      }
+
+      /* ── SIDEBAR ── */
+      .sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .sidebar-widget {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 20px;
+      }
+      .sidebar-widget h4 {
+        font-family: "Playfair Display", serif;
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 16px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .trending-list {
+        list-style: none;
+      }
+      .trending-list li {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--border);
+        cursor: pointer;
+      }
+      .trending-list li:last-child {
+        border-bottom: none;
+      }
+      .trending-num {
+        font-family: "Playfair Display", serif;
+        font-size: 20px;
+        font-weight: 900;
+        color: var(--border);
+        line-height: 1;
+        min-width: 24px;
+      }
+      .trending-text {
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 1.4;
+        color: var(--ink);
+      }
+      .trending-text span {
+        display: block;
+        font-size: 11px;
+        color: var(--muted);
+        font-weight: 400;
+        margin-top: 2px;
+      }
+
+      /* sidebar ad */
+      .sidebar-ad {
+        background: var(--cream);
+        border: 1px dashed var(--border);
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 250px;
+        font-size: 11px;
+        color: var(--muted);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .newsletter {
+        background: var(--ink);
+        color: white;
+        border-radius: 8px;
+        padding: 22px;
+      }
+      .newsletter h4 {
+        color: white;
+        border-color: rgba(255, 255, 255, 0.15);
+        font-family: "Playfair Display", serif;
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+      .newsletter p {
+        font-size: 13px;
+        color: #aaa;
+        margin-bottom: 14px;
+        line-height: 1.5;
+      }
+      .newsletter input {
+        width: 100%;
+        padding: 9px 12px;
+        border-radius: 5px;
+        border: none;
+        font-size: 13px;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        margin-bottom: 8px;
+        outline: none;
+        font-family: "DM Sans", sans-serif;
+      }
+      .newsletter input::placeholder {
+        color: rgba(255, 255, 255, 0.35);
+      }
+      .newsletter button {
+        width: 100%;
+        padding: 9px;
+        border-radius: 5px;
+        border: none;
+        background: var(--accent);
+        color: white;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: "DM Sans", sans-serif;
+        letter-spacing: 0.02em;
+        transition: opacity 0.15s;
+      }
+      .newsletter button:hover {
+        opacity: 0.88;
+      }
+
+      .category-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .pill {
+        font-size: 12px;
+        padding: 6px 14px;
+        border-radius: 20px;
+        border: 1px solid var(--border);
+        cursor: pointer;
+        font-weight: 500;
+        transition: all 0.15s;
+        text-decoration: none;
+        color: var(--ink);
+      }
+      .pill:hover {
+        background: var(--ink);
+        color: white;
+        border-color: var(--ink);
+      }
+      .pill.active {
+        background: var(--ink);
+        color: white;
+        border-color: var(--ink);
+      }
+
+      /* ── QUOTE SECTION ── */
+      .quote-strip {
+        background: var(--accent);
+        padding: 40px 24px;
+        text-align: center;
+        color: white;
+      }
+      .quote-strip blockquote {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(20px, 3vw, 32px);
+        font-weight: 700;
+        max-width: 700px;
+        margin: 0 auto 10px;
+        line-height: 1.35;
+      }
+      .quote-strip cite {
+        font-size: 13px;
+        opacity: 0.7;
+        font-style: normal;
+        letter-spacing: 0.05em;
+      }
+
+      /* -- Feature card animation -- */
+      .featured-card {
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s ease;
+      }
+
+      .featured-card.fade-out {
+        opacity: 0;
+        transform: translateX(20px); /* subtle slide */
+      }
+
+      .featured-card.fade-in {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .pill.active {
+        background: #333;
+        color: #fff;
+        border-radius: 16px;
+        padding: 4px 12px;
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        border-top: 2px solid var(--ink);
+        padding: 32px 24px;
+        background: var(--paper);
+      }
+      .footer-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+      .footer-logo {
+        font-family: "Playfair Display", serif;
+        font-weight: 900;
+        font-size: 20px;
+      }
+      .footer-logo span {
+        color: var(--accent);
+      }
+      .footer-links {
+        display: flex;
+        gap: 20px;
+      }
+      .footer-links a {
+        font-size: 13px;
+        color: var(--muted);
+        text-decoration: none;
+      }
+      .footer-links a:hover {
+        color: var(--ink);
+      }
+      .footer-copy {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      /* --Modal for About and Privacy content --*/
+      .modal {
+        display: none; /* hidden by default */
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+      }
+
+      .modal-content {
+        background: #fff;
+        margin: 10% auto;
+        padding: 20px;
+        border-radius: 8px;
+        width: 80%;
+        max-width: 600px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .close {
+        float: right;
+        font-size: 24px;
+        cursor: pointer;
+      }
+
+      /* responsive */
+      @media (max-width: 780px) {
+        .layout {
+          grid-template-columns: 1fr;
+        }
+        .fact-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero-stats {
+          gap: 24px;
+        }
+        nav {
+          display: none;
+        }
+      }
+
+      /* animations */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(18px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .featured-card {
+        animation: fadeUp 0.5s ease both;
+      }
+      .fact-card:nth-child(1) {
+        animation: fadeUp 0.5s 0.1s ease both;
+      }
+      .fact-card:nth-child(2) {
+        animation: fadeUp 0.5s 0.15s ease both;
+      }
+      .fact-card:nth-child(3) {
+        animation: fadeUp 0.5s 0.2s ease both;
+      }
+      .fact-card:nth-child(4) {
+        animation: fadeUp 0.5s 0.25s ease both;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- STICKY HEADER -->
+    <header>
+      <div class="header-inner">
+        <a href="#" class="logo">TIL<span>Daily</span></a>
+        <nav>
+          <a href="#">Science</a>
+          <a href="#">History</a>
+          <a href="#">Psychology</a>
+          <a href="#">Space</a>
+          <a href="#">Nature</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- LEADERBOARD AD (728×90) -->
+    <div class="ad-leaderboard">
+      <div class="ad-slot">Advertisement — 728×90 Leaderboard</div>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+      <p class="hero-eyebrow">Your daily dose of wonder</p>
+      <h1>Every day you learn something <em>incredible.</em></h1>
+      <p>
+        Bite-sized facts across science, history, psychology, space, and more —
+        verified and endlessly shareable.
+      </p>
+      <div class="hero-stats">
+        <div><strong>500K</strong> monthly readers</div>
+        <div><strong>8,300+</strong> facts published</div>
+        <div><strong>4.9★</strong> reader rating</div>
+      </div>
+    </section>
+
+    <!-- MAIN LAYOUT -->
+    <div class="layout">
+      <!-- CONTENT COLUMN -->
+      <main>
+        <p class="section-label">Today's top fact</p>
+
+        <!-- FEATURED FACT -->
+        <article class="featured-card">
+          <span class="badge">🔥 Fact of the Day</span>
+          <h2>
+            Cleopatra lived closer in time to the Moon landing than to the
+            construction of the Great Pyramid
+          </h2>
+          <p class="fact-body">
+            The Great Pyramid of Giza was completed around 2560 BCE. Cleopatra
+            VII was born in 69 BCE — roughly 2,500 years after the pyramid was
+            built. Yet the Apollo 11 Moon landing happened in 1969 CE, only
+            about 2,000 years after Cleopatra's time. The pyramids are so
+            ancient that Cleopatra herself was closer to us than to the builders
+            of her civilization's most iconic monuments.
+          </p>
+          <div class="card-footer">
+            <span class="category">🏛️ History</span>
+            <div class="share-btns">
+              <button class="share-btn" onclick="copyFact()">📋 Copy</button>
+              <button class="share-btn" onclick="shareFact('twitter')">
+                𝕏 Share
+              </button>
+              <button class="share-btn" onclick="shareFact('whatsapp')">
+                Share
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- CATEGORY FILTER -->
+        <div
+          style="margin-bottom: 24px; display: flex; flex-wrap: wrap; gap: 8px"
+        >
+          <a href="#" class="pill active">All</a>
+          <a href="#" class="pill">🔬 Science</a>
+          <a href="#" class="pill">🏛️ History</a>
+          <a href="#" class="pill">🧠 Psychology</a>
+          <a href="#" class="pill">🚀 Space</a>
+          <a href="#" class="pill">🌿 Nature</a>
+          <a href="#" class="pill">💻 Tech</a>
+        </div>
+
+        <p class="section-label">Latest facts</p>
+
+        <!-- FACT GRID -->
+        <div class="fact-grid">
+          <!-- <article class="fact-card">
+            <p class="cat-tag cat-science">🔬 Science</p>
+            <h3>Your body replaces most of its atoms every few years</h3>
+            <p>
+              Through metabolism, breathing, and eating, the atoms in your body
+              are constantly being exchanged with the environment. Most of the
+              atoms that make up your body today weren't there 5 years ago.
+            </p>
+          </article>
+
+          <article class="fact-card">
+            <p class="cat-tag cat-space">🚀 Space</p>
+            <h3>A day on Venus is longer than a year on Venus</h3>
+            <p>
+              Venus rotates so slowly on its axis (243 Earth days per rotation)
+              that it takes longer to spin once than to orbit the Sun (225 Earth
+              days). Its year is literally shorter than its day.
+            </p>
+          </article>
+
+          <article class="fact-card">
+            <p class="cat-tag cat-psychology">🧠 Psychology</p>
+            <h3>
+              The "IKEA effect" makes us value things more when we build them
+            </h3>
+            <p>
+              Research by Harvard Business School found that people place
+              significantly higher value on products they assembled themselves —
+              even when the result is objectively identical to a pre-assembled
+              version. Labor creates irrational attachment.
+            </p>
+          </article>
+
+          <article class="fact-card">
+            <p class="cat-tag cat-nature">🌿 Nature</p>
+            <h3>
+              Honey never expires — archaeologists found 3,000-year-old honey
+              still edible
+            </h3>
+            <p>
+              Honey's low moisture content, acidic pH, and natural hydrogen
+              peroxide make it hostile to bacteria. Sealed pots of honey found
+              in Egyptian tombs were still perfectly preserved and reportedly
+              still tasted sweet after millennia.
+            </p>
+          </article> -->
+        </div>
+        <button id="load-more">Load more facts</button>
+
+        <!-- MID-CONTENT AD (300×280 rectangle) -->
+        <div class="ad-rectangle">Advertisement — 300×280 Medium Rectangle</div>
+
+        <!-- SECOND ROW -->
+        <!-- <div class="fact-grid">
+          <article class="fact-card">
+            <p class="cat-tag cat-history">🏛️ History</p>
+            <h3>Oxford University is older than the Aztec Empire</h3>
+            <p>
+              Teaching at Oxford began as early as 1096 CE, and it grew rapidly
+              after 1167. The Aztec Empire wasn't founded until 1428 CE —
+              meaning Oxford predates the Aztecs by over 300 years.
+            </p>
+          </article>
+
+          <article class="fact-card">
+            <p class="cat-tag cat-tech">💻 Tech</p>
+            <h3>The first computer "bug" was a literal insect</h3>
+            <p>
+              In 1947, engineers at Harvard found an actual moth trapped in a
+              relay of the Mark II computer, causing a malfunction. Grace
+              Hopper's team taped it into the logbook with the note: "First
+              actual case of bug being found."
+            </p>
+          </article>
+
+          <article class="fact-card">
+            <p class="cat-tag cat-science">🔬 Science</p>
+            <h3>
+              Hot water can freeze faster than cold water under some conditions
+            </h3>
+            <p>
+              Known as the Mpemba effect, this counterintuitive phenomenon has
+              puzzled scientists for decades. Named after a Tanzanian student
+              who noticed his hot ice cream mix froze faster than cold mix in
+              1963. The exact mechanism is still debated.
+            </p>
+          </article>
+
+          <article class="fact-card">
+            <p class="cat-tag cat-psychology">🧠 Psychology</p>
+            <h3>
+              We remember the middle of lists the worst — the "serial position
+              effect"
+            </h3>
+            <p>
+              People reliably remember items at the beginning (primacy effect)
+              and end (recency effect) of a list better than those in the
+              middle. Knowing this can improve how you structure presentations,
+              conversations, and studying.
+            </p>
+          </article>
+        </div> -->
+      </main>
+
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <!-- SIDEBAR AD (300×250) -->
+        <div class="sidebar-ad">Ad — 300×250</div>
+
+        <!-- TRENDING -->
+        <div class="sidebar-widget">
+          <h4>🔥 Trending this week</h4>
+          <ul class="trending-list">
+            <!-- <li>
+              <span class="trending-num">01</span>
+              <span class="trending-text"
+                >Why we forget our dreams within minutes of waking
+                <span>🧠 Psychology · 48K views</span></span
+              >
+            </li>
+            <li>
+              <span class="trending-num">02</span>
+              <span class="trending-text"
+                >The ocean produces more oxygen than all rainforests combined
+                <span>🌿 Nature · 41K views</span></span
+              >
+            </li>
+            <li>
+              <span class="trending-num">03</span>
+              <span class="trending-text"
+                >Nintendo was founded in 1889 — before commercial electricity
+                was widespread <span>💻 Tech · 38K views</span></span
+              >
+            </li>
+            <li>
+              <span class="trending-num">04</span>
+              <span class="trending-text"
+                >Sharks are older than trees — they evolved before forests
+                existed <span>🌿 Nature · 29K views</span></span
+              >
+            </li>
+            <li>
+              <span class="trending-num">05</span>
+              <span class="trending-text"
+                >The fax machine was invented before the telephone
+                <span>📡 History · 25K views</span></span
+              >
+            </li> -->
+          </ul>
+        </div>
+
+        <!-- NEWSLETTER -->
+        <div class="newsletter">
+          <h4>One fact a day.</h4>
+          <p>
+            No noise. Just one brilliant thing to know each morning. Join
+            240,000+ curious minds.
+          </p>
+          <input type="email" placeholder="your@email.com" />
+          <button>Subscribe free →</button>
+        </div>
+
+        <!-- CATEGORIES -->
+        <div class="sidebar-widget">
+          <h4>Browse categories</h4>
+          <div class="category-pills">
+            <a href="#" class="pill">🔬 Science</a>
+            <a href="#" class="pill">🏛️ History</a>
+            <a href="#" class="pill">🧠 Psychology</a>
+            <a href="#" class="pill">🚀 Space</a>
+            <a href="#" class="pill">🌿 Nature</a>
+            <a href="#" class="pill">💻 Tech</a>
+            <a href="#" class="pill">🎨 Art</a>
+            <a href="#" class="pill">🍽️ Food</a>
+            <a href="#" class="pill">💰 Money</a>
+            <a href="#" class="pill">🐾 Animals</a>
+          </div>
+        </div>
+
+        <!-- SECOND SIDEBAR AD -->
+        <div class="sidebar-ad">Ad — 300×250</div>
+      </aside>
+    </div>
+
+    <!-- PULLQUOTE STRIP -->
+    <div class="quote-strip">
+      <blockquote>
+        "The cure for boredom is curiosity. There is no cure for curiosity."
+      </blockquote>
+      <cite>— Dorothy Parker</cite>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-logo">TIL<span>Daily</span></div>
+        <div class="footer-links">
+          <a href="#" id="about-link">About</a>
+          <!-- <a href="#">Submit a Fact</a>
+      <a href="#">Advertise</a> -->
+          <a href="#" id="privacy-link">Privacy Policy</a>
+          <!-- <a href="#">Contact</a> -->
+        </div>
+        <div class="footer-copy">© 2025 TILDaily. Built for the curious.</div>
+      </div>
+    </footer>
+
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="modal-title"></h2>
+        <div id="modal-body"></div>
+      </div>
+    </div>
+
+    <!-- <script>
+      const facts = {
+        Science: {
+          title: "Bananas are naturally radioactive",
+          body: "Bananas contain potassium, and a small fraction of potassium is radioactive. Eating bananas won’t harm you, but it’s a quirky example of natural radioactivity in everyday life.",
+          category: "🔬 Science",
+        },
+        History: {
+          title:
+            "Cleopatra lived closer in time to the Moon landing than to the Great Pyramid",
+          body: "The Great Pyramid of Giza was completed around 2560 BCE. Cleopatra VII was born in 69 BCE — roughly 2,500 years later. The Apollo 11 Moon landing happened in 1969 CE, only about 2,000 years after Cleopatra’s time.",
+          category: "🏛️ History",
+        },
+        Psychology: {
+          title:
+            "Your brain can trick you into seeing faces in random patterns",
+          body: "This phenomenon is called pareidolia. It’s why people often see faces in clouds, rock formations, or even electrical outlets.",
+          category: "🧠 Psychology",
+        },
+        Space: {
+          title:
+            "There are more stars in the universe than grains of sand on Earth",
+          body: "Astronomers estimate that the observable universe contains around 1 septillion stars — that’s a 1 followed by 24 zeros, far exceeding the number of sand grains on all Earth’s beaches.",
+          category: "🌌 Space",
+        },
+        Nature: {
+          title: "Sharks existed before trees",
+          body: "Sharks have been around for more than 400 million years, while the first trees appeared about 350 million years ago. Sharks are truly ancient survivors.",
+          category: "🌿 Nature",
+        },
+      };
+
+      const navLinks = document.querySelectorAll("nav a");
+      const categorySpan = document.querySelector(".featured-card .category");
+      const factTitle = document.querySelector(".featured-card h2");
+      const factBody = document.querySelector(".featured-card .fact-body");
+      const card = document.querySelector(".featured-card");
+
+      navLinks.forEach((link) => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          const selected = link.textContent.trim();
+          const fact = facts[selected];
+
+          if (fact) {
+            // Start fade-out
+            card.classList.add("fade-out");
+
+            // After fade-out completes, update content and fade-in
+            setTimeout(() => {
+              categorySpan.textContent = fact.category;
+              factTitle.textContent = fact.title;
+              factBody.textContent = fact.body;
+
+              card.classList.remove("fade-out");
+              card.classList.add("fade-in");
+
+              // Remove fade-in class after transition so it can be reused
+              setTimeout(() => {
+                card.classList.remove("fade-in");
+              }, 500);
+            }, 500); // match CSS transition duration
+          }
+        });
+      });
+    </script> -->
+    <script>
+      const facts = {
+        Science: {
+          title: "Bananas are naturally radioactive",
+          body: "Bananas contain potassium, and a small fraction of potassium is radioactive. Eating bananas won’t harm you, but it’s a quirky example of natural radioactivity in everyday life.",
+          category: "🔬 Science",
+        },
+        History: {
+          title:
+            "Cleopatra lived closer in time to the Moon landing than to the Great Pyramid",
+          body: "The Great Pyramid of Giza was completed around 2560 BCE. Cleopatra VII was born in 69 BCE — roughly 2,500 years later. The Apollo 11 Moon landing happened in 1969 CE, only about 2,000 years after Cleopatra’s time.",
+          category: "🏛️ History",
+        },
+        Psychology: {
+          title:
+            "Your brain can trick you into seeing faces in random patterns",
+          body: "This phenomenon is called pareidolia. It’s why people often see faces in clouds, rock formations, or even electrical outlets.",
+          category: "🧠 Psychology",
+        },
+        Space: {
+          title:
+            "There are more stars in the universe than grains of sand on Earth",
+          body: "Astronomers estimate that the observable universe contains around 1 septillion stars — that’s a 1 followed by 24 zeros, far exceeding the number of sand grains on all Earth’s beaches.",
+          category: "🚀 Space",
+        },
+        Nature: {
+          title: "Sharks existed before trees",
+          body: "Sharks have been around for more than 400 million years, while the first trees appeared about 350 million years ago. Sharks are truly ancient survivors.",
+          category: "🌿 Nature",
+        },
+        Tech: {
+          title: "The first computer bug was a real insect",
+          body: "In 1947, engineers found a moth stuck in a Harvard Mark II computer relay. They taped it into the logbook, calling it the 'first actual case of a bug being found.'",
+          category: "💻 Tech",
+        },
+      };
+
+      const navLinks = document.querySelectorAll("nav a");
+      const pills = document.querySelectorAll(".pill");
+      const categorySpan = document.querySelector(".featured-card .category");
+      const factTitle = document.querySelector(".featured-card h2");
+      const factBody = document.querySelector(".featured-card .fact-body");
+      const card = document.querySelector(".featured-card");
+
+      let slideshowInterval = null; // store interval ID
+
+      function updateFact(selected) {
+        const fact = facts[selected];
+        if (!fact) return;
+
+        card.classList.add("fade-out");
+
+        setTimeout(() => {
+          categorySpan.textContent = fact.category;
+          factTitle.textContent = fact.title;
+          factBody.textContent = fact.body;
+
+          card.classList.remove("fade-out");
+          card.classList.add("fade-in");
+
+          setTimeout(() => {
+            card.classList.remove("fade-in");
+          }, 500);
+        }, 500);
+      }
+
+      function randomFact() {
+        const keys = Object.keys(facts);
+        const randomKey = keys[Math.floor(Math.random() * keys.length)];
+        updateFact(randomKey);
+      }
+
+      function startSlideshow() {
+        // clear any existing slideshow
+        clearInterval(slideshowInterval);
+        // show first random fact immediately
+        randomFact();
+        // then cycle every 5 seconds
+        slideshowInterval = setInterval(randomFact, 5000);
+      }
+
+      function stopSlideshow() {
+        clearInterval(slideshowInterval);
+        slideshowInterval = null;
+      }
+
+      // Wire up nav links
+      navLinks.forEach((link) => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          stopSlideshow(); // stop slideshow if running
+          updateFact(link.textContent.trim());
+        });
+      });
+
+      // Wire up pills
+      pills.forEach((pill) => {
+        pill.addEventListener("click", (e) => {
+          e.preventDefault();
+
+          // Remove active class from all pills
+          pills.forEach((p) => p.classList.remove("active"));
+          pill.classList.add("active");
+
+          const selected = pill.textContent.replace(/[^a-zA-Z]/g, "").trim();
+          if (selected === "All") {
+            startSlideshow();
+          } else {
+            stopSlideshow();
+            updateFact(selected);
+          }
+        });
+      });
+
+      // Trending from Reddit
+      //   // Fetch trending posts from Reddit
+      //   async function loadTrending() {
+      //     const response = await fetch(
+      //       "https://www.reddit.com/r/todayilearned/top.json?t=week&limit=5",
+      //     );
+      //     const data = await response.json();
+
+      //     const posts = data.data.children.map((child, i) => {
+      //       const post = child.data;
+      //       return {
+      //         num: String(i + 1).padStart(2, "0"),
+      //         title: post.title,
+      //         category: "🧠 TIL", // you can map categories if you want
+      //         views: post.ups.toLocaleString() + " upvotes",
+      //       };
+      //     });
+
+      //     const list = document.querySelector(".trending-list");
+      //     list.innerHTML = posts
+      //       .map(
+      //         (p) => `
+      //   <li>
+      //     <span class="trending-num">${p.num}</span>
+      //     <span class="trending-text">
+      //       ${p.title}
+      //       <span>${p.category} · ${p.views}</span>
+      //     </span>
+      //   </li>
+      // `,
+      //       )
+      //       .join("");
+      //   }
+
+      //   // Call on page load
+      //   loadTrending();
+      async function loadTrending() {
+        const response = await fetch("http://localhost:3000/trending");
+        const posts = await response.json();
+
+        const list = document.querySelector(".trending-list");
+        list.innerHTML = posts
+          .map(
+            (p) => `
+      <li>
+        <span class="trending-num">${p.num}</span>
+        <span class="trending-text">
+          ${p.title}
+          <span>🧠 TIL · ${p.upvotes.toLocaleString()} upvotes</span>
+        </span>
+      </li>
+    `,
+          )
+          .join("");
+      }
+
+      loadTrending();
+
+      //===========================
+      //   async function loadFacts() {
+      //     const response = await fetch("http://localhost:3000/facts");
+      //     const facts = await response.json();
+
+      //     const grid = document.querySelector(".fact-grid");
+      //     grid.innerHTML = facts
+      //       .map(
+      //         (fact) => `
+      //   <article class="fact-card">
+      //     <p class="cat-tag">${fact.category}</p>
+      //     <h3>${fact.title}</h3>
+      //     <p>${fact.body}</p>
+      //   </article>
+      // `,
+      //       )
+      //       .join("");
+      //   }
+
+      //   loadFacts();
+      let currentPage = 1;
+
+      async function loadFacts(page = 1) {
+        const response = await fetch(
+          `http://localhost:3000/facts?page=${page}&pageSize=8`,
+        );
+        const data = await response.json();
+
+        const grid = document.querySelector(".fact-grid");
+
+        // Append instead of replacing
+        grid.innerHTML += data.facts
+          .map(
+            (fact) => `
+      <article class="fact-card">
+        <p class="cat-tag">${fact.category}</p>
+        <h3>${fact.title}</h3>
+        <p>${fact.body}</p>
+      </article>
+    `,
+          )
+          .join("");
+
+        // Show/hide "Load more" button
+        const loadBtn = document.querySelector("#load-more");
+        if (data.page * data.pageSize >= data.total) {
+          loadBtn.style.display = "none";
+        } else {
+          loadBtn.style.display = "block";
+        }
+      }
+
+      // Initial load
+      loadFacts(currentPage);
+
+      // Hook up "Load more" button
+      document.querySelector("#load-more").addEventListener("click", () => {
+        currentPage++;
+        loadFacts(currentPage);
+      });
+    </script>
+
+    <script>
+      //========================
+      const modal = document.getElementById("modal");
+      const modalTitle = document.getElementById("modal-title");
+      const modalBody = document.getElementById("modal-body");
+      const closeBtn = document.querySelector(".close");
+
+      // Example link wiring
+      document.querySelector("#about-link").addEventListener("click", (e) => {
+        e.preventDefault();
+        modalTitle.textContent = "About";
+        modalBody.innerHTML =
+          "<p>This site shares fascinating facts curated from multiple sources...</p>";
+        modal.style.display = "block";
+      });
+
+      document.querySelector("#privacy-link").addEventListener("click", (e) => {
+        e.preventDefault();
+        modalTitle.textContent = "Privacy Policy";
+        modalBody.innerHTML =
+          "<p>We respect your privacy. No personal data is stored beyond your subscription email...</p>";
+        modal.style.display = "block";
+      });
+
+      closeBtn.onclick = () => (modal.style.display = "none");
+      window.onclick = (e) => {
+        if (e.target === modal) modal.style.display = "none";
+      };
+
+      //=====================
+      function copyFact() {
+        const text =
+          "TIL: Cleopatra lived closer in time to the Moon landing than to the construction of the Great Pyramid. Via TILDaily.com";
+        navigator.clipboard
+          ?.writeText(text)
+          .then(() => {
+            const btn = event.target;
+            btn.textContent = "✓ Copied!";
+            setTimeout(() => (btn.textContent = "📋 Copy"), 2000);
+          })
+          .catch(() => {
+            alert("Fact copied! (clipboard not available in preview)");
+          });
+      }
+
+      function shareFact(platform) {
+        const text = encodeURIComponent(
+          "TIL: Cleopatra lived closer to the Moon landing than to the construction of the Great Pyramid 🤯 via @TILDaily",
+        );
+        const url = encodeURIComponent("https://tildaily.com");
+        if (platform === "twitter") {
+          window.open(
+            `https://twitter.com/intent/tweet?text=${text}&url=${url}`,
+            "_blank",
+          );
+        } else if (platform === "whatsapp") {
+          window.open(`https://wa.me/?text=${text}%20${url}`, "_blank");
+        }
+      }
+
+      // Category pill filtering (visual feedback only)
+      document.querySelectorAll(".pill").forEach((pill) => {
+        pill.addEventListener("click", (e) => {
+          e.preventDefault();
+          document
+            .querySelectorAll(".pill")
+            .forEach((p) => p.classList.remove("active"));
+          pill.classList.add("active");
+        });
+      });
+
+      // Newsletter submit
+      document
+        .querySelector(".newsletter button")
+        .addEventListener("click", () => {
+          const input = document.querySelector(".newsletter input");
+          if (input.value.includes("@")) {
+            document.querySelector(".newsletter").innerHTML = `
+        <h4 style="color:white; font-family:'Playfair Display',serif; margin-bottom:8px;">You're in! 🎉</h4>
+        <p style="color:#aaa; font-size:13px;">Your first fact arrives tomorrow morning. Stay curious.</p>
+      `;
+          } else {
+            input.style.border = "1px solid #f4a58a";
+            input.placeholder = "Enter a valid email";
+          }
+        });
+    </script>
+  </body>
+</html>
