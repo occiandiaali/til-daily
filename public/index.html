@@ -43,6 +43,14 @@
     <div class="ad-leaderboard">
       <div class="ad-slot">Advertisement — 728×90 Leaderboard</div>
     </div>
+    <!-- AD: Leaderboard top (728×90) -->
+
+    <!--
+        Replace this comment with your ad network tag, e.g. Google AdSense:
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXX"
+             data-ad-slot="XXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+      -->
 
     <!-- HERO -->
     <section class="hero">
@@ -269,8 +277,9 @@
             No noise. Just one brilliant thing to know each morning. Join
             240,000+ curious minds.
           </p>
-          <input type="email" placeholder="your@email.com" />
-          <button>Subscribe free →</button>
+          <!-- <input type="email" placeholder="your@email.com" disabled /> -->
+          <input type="email" placeholder="COMING SOON" disabled />
+          <button style="cursor: not-allowed" disabled>Subscribe free →</button>
         </div>
 
         <!-- CATEGORIES -->
@@ -543,7 +552,10 @@
       //   // Call on page load
       //   loadTrending();
       async function loadTrending() {
-        const response = await fetch("http://localhost:3000/trending");
+        // const response = await fetch("http://localhost:3000/trending");
+        const response = await fetch(
+          "https://reddit-fetcher-yj5e.onrender.com/trending",
+        );
         const posts = await response.json();
 
         const list = document.querySelector(".trending-list");
@@ -587,8 +599,11 @@
       let currentPage = 1;
 
       async function loadFacts(page = 1) {
+        // const response = await fetch(
+        //   `http://localhost:3000/facts?page=${page}&pageSize=8`,
+        // );
         const response = await fetch(
-          `http://localhost:3000/facts?page=${page}&pageSize=8`,
+          `https://reddit-fetcher-yj5e.onrender.com/facts?page=${page}&pageSize=8`,
         );
         const data = await response.json();
 
